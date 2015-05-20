@@ -1,0 +1,25 @@
+{
+  "name": "HKName",
+  "version": "1.0.0",
+  "description": "get names",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "mocha"
+  },
+  "author": "Neo Choi",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "iconv-lite": "^0.4.8",
+    "q": "^1.3.0",
+    "request": "^2.55.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
