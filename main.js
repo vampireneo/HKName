@@ -35,6 +35,21 @@ function getStudentName(pId) {
 						deferred.resolve(student);
 					}
 					else {
+						var schools = $("#context #maincontent").eq(1).find(".tbody, .tbodyalt").find("tr");
+						if (schools.length > 0) {
+							student.schools = [];
+							for (var i = 0; i < schools.length; i++) {
+								var data = $(schools[i]).find("td");
+								var school = {};
+								school.region = $(data[0]).text();
+								school.type = $(data[1]).text();
+								school.name = $(data[2]).text();
+								var years = $(data[3]).text().split('-');
+								school.fromYear = parseInt(years[0].trim(), 10);
+								school.toYear = parseInt(years[1].trim(), 10);
+								student.schools.push(school);
+							};
+						}
 						MongoClient.connect('', function(err, db) {
 							if(err) throw err;
 							//console.log('connected')
