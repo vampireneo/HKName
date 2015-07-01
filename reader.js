@@ -77,7 +77,7 @@ function getStudentName(pId) {
 	return deferred.promise;
 }
 
-exports.getData = function (pList) {
+function getData (pList) {
 	var tmp = pList.splice(0,batchSize);
 	console.log(tmp);
 	Q.all(tmp.map(getStudentName))
@@ -90,4 +90,6 @@ exports.getData = function (pList) {
 	.done(function() {
 		if (pList.length > 0) {getData(pList);}
 	});
-};
+}
+
+exports.getData = getData;
