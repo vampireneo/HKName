@@ -31,10 +31,10 @@ function getStudentName(pId) {
 				var $ = cheerio.load(str);
 				if ($("#context .portrait-profile img").length > 0) {
 					student._id = pId;
-					student.gender = $("#context .portrait-profile img").attr("src").indexOf("f.gif") != -1 ? "F" : "M";
+					student.gender = $("#context .portrait-profile img").attr("src").indexOf("f.gif") !== -1 ? "F" : "M";
 					student.name = $("#content2 tr").eq(2).find("td").contents().eq(2).text();
 					student.engName = $("#content2 tr").eq(1).find("td").eq(1).contents().eq(2).text();
-					if (student.engName === "--") student.engName = "";
+					if (student.engName === "--") {student.engName = "";}
 					if (student.name === "--") {
 						student = {};
 						deferred.resolve(student);
@@ -56,7 +56,7 @@ function getStudentName(pId) {
 							}
 						}
 						MongoClient.connect(namedbConnection, function(err, db) {
-							if(err) throw err;
+							if(err) {throw err;}
 							//console.log('connected')
 							db.collection('student').insert(student, {w:1});
 							db.close();
@@ -64,8 +64,9 @@ function getStudentName(pId) {
 						});
 					}
 				}
-				else
+				else {
 					deferred.resolve(student);
+				}
 			} catch (err) {
 				deferred.resolve(student);
 			}
@@ -80,11 +81,13 @@ exports.getData = function (pList) {
 	var tmp = pList.splice(0,batchSize);
 	console.log(tmp);
 	Q.all(tmp.map(getStudentName))
+	/*
 	.spread(function() {
 		var args = [].slice.call(arguments);
 		//console.log(args);
 	})
+	*/
 	.done(function() {
-		if (pList.length > 0) getData(pList);
+		if (pList.length > 0) {getData(pList);}
 	});
 };
