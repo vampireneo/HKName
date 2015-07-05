@@ -4,3 +4,5 @@ node_js:
 before_install:
   - "npm -g install mocha"
 after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info && rm -rf ./coverage
+notifications:
+  slack: neochoi:hfEwmNNY0kQ3fu7k68UTpD8V
