@@ -1,8 +1,12 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_install:
-  - "npm -g install mocha"
-after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info && rm -rf ./coverage
+- npm -g install mocha
+after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report
+  lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  && ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info
+  && rm -rf ./coverage
 notifications:
-  slack: neochoi:hfEwmNNY0kQ3fu7k68UTpD8V
+  slack:
+    secure: vG6c2o6MqQfgNeWh5EAZNwkS13WtixHohmf62drzHhxYa4ltiZX+jlPzoLxVv51FqcOVaeTQiaG1vGWi9EEtYHTDxNR+1miVUrot3nRB073MB5uF1EcSCsC6xildejcelZ3HiNA3YH+V/noqkr2U4ZtZjtbkKBTtzXMzHWtbNLLHHL/KfA3Aa+Vl4GtBzhr8DzqNG2djNmprLF19ssp7JRy6xM9rTkZMskgJ36HOeODwpawuvPubRL7BGq7ROAKEwNUtfJQFVmocCt0ZEieQhainv4IDrLDBAmlooiTcctfFVcPyAKUyj/Di3dXhEmvclhEhPYCjvBssfTU0VB8YcFXqsFnRXo1LEKvSq3o/6401oBliY/TEwYHpH+vI0cktLfAqk+2Ya7DaS96I62bDs4GeSyYCgvCI5MSPTTrk10W1NxVQTSxw5+t/l/sKUmBTW0xkATcziDf8vO+wofbQ4O9vtpGDVSlR19KmKS5NubrnlZZZnbQws32LpzDPlKzukKAyrfIBZXNqYh9SHgYQ01YgND8SrPJlbvBukG5X1SBpIAyt4h6ucDqcwrfCbQuwLCzz8BusAgRgGlTR/IQaV6BG1lY7CzOX2/oP9pKwW+48mBZJCV2heQl2Wm2QZK+C3gV2kBTAQXPrSH/DL4sJxsURAHEVom6s8Tx00T0jcIk=
